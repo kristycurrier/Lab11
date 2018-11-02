@@ -10,8 +10,34 @@ namespace Lab11
     {
         static void Main(string[] args)
         {
-            List<Movie> listOfMovies = DefaultMovieList(); 
-            
+            List<Movie> listOfMovies = DefaultMovieList();
+
+            Console.WriteLine($"There are {listOfMovies.Count} movies in this list");
+
+            Console.WriteLine("What category are you interested in? ");
+            string movieCategory = Console.ReadLine();
+
+            if (movieCategory == "SciFi")
+            {
+                Movie.PrintSciFiMovies(listOfMovies);
+            }
+            else if (movieCategory == "Fantasy")
+            {
+                Movie.PrintFantasyMovies(listOfMovies);
+            }
+            else if (movieCategory == "Kids")
+            {
+                Movie.PrintKidsMovies(listOfMovies);
+            }
+            else
+            {
+                Console.WriteLine("Sorry, that wasn't an option.  Choose between \"Kids\", \"Fantasy\" or \"SciFi\"");
+            }
+
+
+
+            Console.ReadKey();
+
 
         }
 
@@ -32,20 +58,5 @@ namespace Lab11
 
             return movieList;
         }
-    }
-
-
-
-    public class Movie
-    {
-        private string Title { get; set; }
-        private string Category { get; set; }
-
-        public Movie (string title, string category )
-        {
-            Title = title;
-            Category = category;
-        }
-
     }
 }
