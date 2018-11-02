@@ -13,32 +13,70 @@ namespace Lab11
             List<Movie> listOfMovies = DefaultMovieList();
 
             Console.WriteLine($"There are {listOfMovies.Count} movies in this list");
-
-            Console.WriteLine("What category are you interested in? ");
-            string movieCategory = Console.ReadLine();
-
-            if (movieCategory == "SciFi")
-            {
-                Movie.PrintSciFiMovies(listOfMovies);
+            bool keepGoing = true;
+            while (keepGoing)
+                {
+                GetCategoryPrintMovies(listOfMovies);
+                keepGoing = KeepAskingForCategory();
             }
-            else if (movieCategory == "Fantasy")
-            {
-                Movie.PrintFantasyMovies(listOfMovies);
-            }
-            else if (movieCategory == "Kids")
-            {
-                Movie.PrintKidsMovies(listOfMovies);
-            }
-            else
-            {
-                Console.WriteLine("Sorry, that wasn't an option.  Choose between \"Kids\", \"Fantasy\" or \"SciFi\"");
-            }
-
-
+           
 
             Console.ReadKey();
+        }
 
+        public static bool KeepAskingForCategory()
+        {
+            bool validInput = false;
+            bool keepGoing = true;
+            while (validInput == false)
+            {
+                Console.WriteLine("Would you like to continue? (y/n)");
+                string input = Console.ReadLine();
+                if (input.Equals("y", StringComparison.OrdinalIgnoreCase))
+                {
+                    keepGoing = true;
+                    validInput = true;
 
+                } else if (input.Equals("n", StringComparison.OrdinalIgnoreCase))
+                {
+                    keepGoing = false;
+                    validInput = true;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input, please type y for yes or n for no");
+                }
+            }
+            return keepGoing;
+        }
+        public static void GetCategoryPrintMovies(List<Movie> listOfMovies)
+        {
+            bool realCategory = false;
+            while (realCategory == false)
+            {
+                Console.WriteLine("What category are you interested in? ");
+                string movieCategory = Console.ReadLine();
+
+                if (movieCategory.Equals("SciFi", StringComparison.OrdinalIgnoreCase))
+                {
+                    Movie.PrintSciFiMovies(listOfMovies);
+                    realCategory = true;
+                }
+                else if (movieCategory.Equals("Fantasy", StringComparison.OrdinalIgnoreCase))
+                {
+                    Movie.PrintFantasyMovies(listOfMovies);
+                    realCategory = true;
+                }
+                else if (movieCategory.Equals("Kids", StringComparison.OrdinalIgnoreCase))
+                {
+                    Movie.PrintKidsMovies(listOfMovies);
+                    realCategory = true;
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, that wasn't an option.  Choose between \"Kids\", \"Fantasy\" or \"SciFi\"");
+                }
+            }
         }
 
         public static List<Movie> DefaultMovieList()
