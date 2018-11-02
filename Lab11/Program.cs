@@ -19,8 +19,7 @@ namespace Lab11
                 GetCategoryPrintMovies(listOfMovies);
                 keepGoing = KeepAskingForCategory();
             }
-           
-
+  
             Console.ReadKey();
         }
 
