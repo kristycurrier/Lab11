@@ -54,26 +54,32 @@ namespace Lab11
             while (realCategory == false)
             {
                 Console.WriteLine("What category are you interested in? ");
-                string movieCategory = Console.ReadLine();
+                Console.WriteLine("1. SciFi");
+                Console.WriteLine("2. Fantasy");
+                Console.WriteLine("3. Kids");
+                Console.Write("Please select a number: ");
 
-                if (movieCategory.Equals("SciFi", StringComparison.OrdinalIgnoreCase))
+                int categoryNumber = 0;
+                bool validOption = int.TryParse( Console.ReadLine(), out categoryNumber);
+
+                if (validOption == true && categoryNumber == 1)
                 {
                     Movie.PrintSciFiMovies(listOfMovies);
                     realCategory = true;
                 }
-                else if (movieCategory.Equals("Fantasy", StringComparison.OrdinalIgnoreCase))
+                else if (validOption == true && categoryNumber == 2)
                 {
                     Movie.PrintFantasyMovies(listOfMovies);
                     realCategory = true;
                 }
-                else if (movieCategory.Equals("Kids", StringComparison.OrdinalIgnoreCase))
+                else if (validOption == true && categoryNumber == 3)
                 {
                     Movie.PrintKidsMovies(listOfMovies);
                     realCategory = true;
                 }
                 else
                 {
-                    Console.WriteLine("Sorry, that wasn't an option.  Choose between \"Kids\", \"Fantasy\" or \"SciFi\"");
+                    Console.WriteLine("Sorry, that wasn't an option.  Choose between Kids, Fantasy or SciFi by selecting a valid nuber.");
                 }
             }
         }
